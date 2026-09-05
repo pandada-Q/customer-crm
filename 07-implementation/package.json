@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "import": "node run-firstbatch.js",
-    "test": "node --test \"tests/*.test.js\""
+    "test": "node --test tests/app.test.js tests/pipeline.test.js tests/assistant.test.js"
   },
   "engines": { "node": ">=18" }
 }
