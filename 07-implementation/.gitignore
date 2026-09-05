@@ -1,0 +1,9 @@
+# 密钥配置不入库
+.env
+# 运行数据库（含联系人数据，不入库）：首次启动自动创建空库，可 npm run import 用样例素材重建
+data/db.json
+# 数据备份与日志
+data/db.json.bak*
+*.log
+# 依赖
+node_modules/

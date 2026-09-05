@@ -1,0 +1,23 @@
+# GitHub Actions CI：push / PR 时自动跑测试（零第三方依赖，无需 npm install）
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: 使用 Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: 运行测试套件（32 条）
+        working-directory: 07-implementation
+        run: npm test

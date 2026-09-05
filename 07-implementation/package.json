@@ -1,0 +1,13 @@
+{
+  "name": "crm-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "客户资料管理助手：静态前端 + 轻量后端 + 数据库（D15）。混合项目（软件+AI）交付物。",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "import": "node run-firstbatch.js",
+    "test": "node --test \"tests/*.test.js\""
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>客户资料管理助手</title>
+<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+<div id="app">
+  <div id="login" class="login">
+    <div class="login-card">
+      <h1>客户资料管理助手</h1>
+      <p class="muted">请输入访问口令进入（只读展示 + 有限操作）</p>
+      <input id="passcode" type="password" placeholder="访问口令" autocomplete="off" />
+      <button id="loginBtn">进入</button>
+      <div id="loginErr" class="err"></div>
+    </div>
+  </div>
+
+  <div id="main" class="hidden">
+    <header class="topbar">
+      <div class="brand">客户资料管理助手</div>
+      <nav>
+        <a data-view="table" class="active">客户总表</a>
+        <a data-view="pending">待确认区 <span id="badge" class="badge">0</span></a>
+        <a data-view="intention">意向客户</a>
+        <a data-view="todos">待办</a>
+      </nav>
+      <div class="top-actions">
+        <!-- DEV-ONLY 测试按钮：默认隐藏。服务端以 DEV_TOOLS=1 启动（.env 配 DEV_TOOLS=1）后由 app.js 拉取 /api/config 显示，配套 /api/dev/clear -->
+        <button id="clearData" class="ghost danger hidden" title="测试专用：清空联系人/待确认/待办/留痕全部数据，不可恢复（仅 DEV_TOOLS=1 时显示）">清空数据</button>
+        <button id="logout" class="ghost">退出</button>
+      </div>
+    </header>
+    <main id="view"></main>
+  </div>
+</div>
+
+<!-- 修改联系人资料对话框（低置信补全 / 冲突人工修改，一次性提交） -->
+<div id="editModal" class="modal hidden">
+  <div class="modal-card">
+    <h3 id="emTitle">修改联系人资料</h3>
+    <div id="emHint" class="muted" style="margin-bottom:10px"></div>
+    <div class="modal-grid">
+      <label>姓名<input id="ef_name" placeholder="姓名"/></label>
+      <label>公司<input id="ef_company" placeholder="公司"/></label>
+      <label>手机<input id="ef_mobile" placeholder="手机"/></label>
+      <label>座机<input id="ef_landline" placeholder="座机"/></label>
+      <label>邮箱<input id="ef_email" placeholder="邮箱"/></label>
+      <label>城市<input id="ef_city" placeholder="城市"/></label>
+      <label>合作状态<select id="ef_status"><option value="">（未标注）</option><option>有效</option><option>暂停</option><option>待定</option></select></label>
+      <label>备注<input id="ef_note" placeholder="备注"/></label>
+    </div>
+    <div class="btnrow">
+      <button id="emCancel" class="sm ghost">取消</button>
+      <button id="emSave" class="sm ok">保存修改</button>
+    </div>
+  </div>
+</div>
+
+<!-- 意向客户「跟进」对话框：记录本次跟进人员 -->
+<div id="followModal" class="modal hidden">
+  <div class="modal-card" style="width:400px">
+    <h3>标记跟进</h3>
+    <div id="fmHint" class="muted" style="margin-bottom:10px"></div>
+    <div class="modal-grid" style="grid-template-columns:1fr">
+      <label>跟进人员<input id="ff_by" placeholder="如：王五 / 市场部小李" autocomplete="off"/></label>
+    </div>
+    <div class="btnrow">
+      <button id="fmCancel" class="sm ghost">取消</button>
+      <button id="fmSave" class="sm ok">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- AI 数据小助手：悬浮右下角，只查系统内数据（登录后显示） -->
+<button id="assistFab" class="assist-fab hidden" title="AI 数据小助手（仅查询系统内数据）">AI</button>
+<div id="assistPanel" class="assist-panel hidden">
+  <div class="assist-head">
+    <div>
+      <div class="assist-title">AI 数据小助手</div>
+      <div class="assist-sub">仅查询系统内数据 · 不联网搜索</div>
+    </div>
+    <button id="assistClose" class="sm ghost" title="收起">✕</button>
+  </div>
+  <div id="assistMsgs" class="assist-body"></div>
+  <div class="assist-input-row">
+    <input id="assistInput" placeholder="如：佛山有哪些客户？推荐几个有效客户" autocomplete="off" maxlength="300"/>
+    <button id="assistSend">发送</button>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

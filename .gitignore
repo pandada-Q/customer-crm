@@ -1,0 +1,36 @@
+# ============================================================
+# 仓库只提交「应用代码(07-implementation/) + 虚构样例素材(input/)」
+# 其余为 FDE 过程文档 / 工作区私有数据，一律不入库
+# ============================================================
+
+# —— FDE 过程产物（访谈/需求/规格/工单/交付导出等，非应用代码）——
+01-intake/
+02-requirements/
+03-spec/
+04-template-match/
+05-value-check/
+06-tickets/
+08-deliverables/
+手动测试-口语文本.txt
+.advance-queue.json
+
+# —— 工作区私有（记忆库 / 会话缓存）——
+.workbuddy/
+
+# —— 密钥与本地配置 ——
+07-implementation/.env
+.env
+
+# —— 运行数据库（含联系人数据，不入库）——
+# 首次启动自动创建空库；如需演示数据：npm run import（见 README）
+07-implementation/data/db.json
+07-implementation/data/db.json.bak*
+data/db.json
+data/db.json.bak*
+*.log
+
+# —— 依赖与临时产物 ——
+node_modules/
+**/node_modules/
+*.tmp.js
+.DS_Store

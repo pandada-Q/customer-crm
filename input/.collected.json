@@ -1,0 +1,14 @@
+{
+  "collectedAt": "2026-09-04T14:31:42.000Z",
+  "skill": "fde-intake",
+  "files": [
+    { "name": "初步需求和背景.txt", "mtime": 1788531907910.2139, "status": "processed" },
+    { "name": "备份0812.csv", "mtime": 1788531606254.7603, "status": "processed" },
+    { "name": "contacts_export.json", "mtime": 1788531606250.7583, "status": "processed" },
+    { "name": "客户名单-市场部 (副本).csv", "mtime": 1788531606250.7583, "status": "processed" },
+    { "name": "客户名单-市场部.csv", "mtime": 1788531606250.7583, "status": "processed" },
+    { "name": "王总微信发来的.txt", "mtime": 1788531606250.7583, "status": "processed" },
+    { "name": "合作伙伴名单(老系统导出).csv", "mtime": 1788531606249.7583, "status": "processed" },
+    { "name": "扫描件_补充名单.jpg", "mtime": 1788531606249.7583, "status": "skipped", "reason": "fde-intake skill 不处理图片扫描件，已在初步需求文档信息缺口 #8 标注待澄清" }
+  ]
+}
